@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Демонстрация</title>
+    <script src="./solution.js"></script>
+    <script src="./demo.js" async defer></script>
+    <style>
+      body,
+      input,
+      button {
+        font-size: 20px;
+      }
+
+      table {
+        font-size: 40px;
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      td {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border: solid black 1px;
+      }
+      .found {
+        background-color: lightgreen;
+      }
+      .notfound {
+        background-color: lightcoral;
+      }
+      .error {
+        background-color: red;
+      }
+      [data-result] {
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Поиск в матрице</h1>
+    <form>
+      <label>
+        Введите слово для поиска
+        <input type="text" />
+        <button type="submit">Искать</button>
+      </label>
+    </form>
+    <div data-result hidden>Результат</div>
+    <hr />
+    <div data-field></div>
+    <p></p>
+  </body>
+</html>
