@@ -25,7 +25,7 @@ function prepareMatrix() {
 
   const result = [];
   for (let j = 0; j < height; j++) {
-    const line = [];
+    let line = "";
     for (let i = 0; i < width; i++) {
       line += alphabet[Math.floor(Math.random() * alphabet.length)];
     }
