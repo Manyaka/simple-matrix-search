@@ -1,11 +1,11 @@
 // prettier-ignore
 let matrix = [
-  ["а", "б", "ы", "р", "в", "а", "л", "г"],
-  ["и", "а", "д", "р", "к", "л", "и", "н"],
-  ["с", "л", "ы", "р", "в", "в", "р", "г"],
-  ["к", "к", "м", "р", "в", "а", "т", "г"],
-  ["р", "а", "с", "к", "а", "т", "и", "г"],
-  ["а", "п", "п", "л", "е", "т", "л", "г"],
+  "абырвалг",
+  "иадрклин",
+  "слырвврг",
+  "ккмрватг",
+  "раскатиг",
+  "апплетлг",
 ];
 /*
 Если хотите воспользоваться случайно матрицей,
@@ -27,7 +27,7 @@ function prepareMatrix() {
   for (let j = 0; j < height; j++) {
     const line = [];
     for (let i = 0; i < width; i++) {
-      line.push(alphabet[Math.floor(Math.random() * alphabet.length)]);
+      line += alphabet[Math.floor(Math.random() * alphabet.length)];
     }
     result.push(line);
   }
@@ -38,7 +38,7 @@ function visualizeMatrix(node, matrix) {
   const table = document.createElement("table");
   matrix.forEach(row => {
     const tr = document.createElement("tr");
-    row.forEach(v => {
+    Array.from(row).forEach(v => {
       const cell = document.createElement("td");
       cell.textContent = v;
       tr.appendChild(cell);
