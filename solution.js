@@ -1,51 +1,61 @@
 function findWord(text, data) {
-  console.log('text=', text);
-  // console.log('data=', data);
-  let dataLength = data.length;
+  //проверка входных данных
+  if (0 === text.length || 99 < text.length) {
+    return;
+  }
+  if (0 === data.length || 99 < data.length) {
+    return;
+  }
+
+  let isStringLengthSmallerThen100 = data.every(element => element.length < 99);
+
+  if (!isStringLengthSmallerThen100) {
+    return;
+  }
+
+  let dataLength;
   let reverseData = [];
   let verticalData = [];
   let reverseVerticalData = [];
-
-  let matrix = [
-    "абырвалг",
-    "иадрклин",
-    "слырвврг",
-    "ккмрватг",
-    "раскатиг",
-    "апплетлг",
-  ];
 
   //реверс строк в массиве
   data.forEach(function(element) {
     reverseData.push(element.split("").reverse().join(""));
   });
 
-  //сбор вертикальных массивов из обычного и реверсного
-  // data.forEach(function(element) {
-  //   console.log(typeof element, '**');
-  // });
-
-  //дата - массив -> искать внутри массива
-  if (data.some(element => element.indexOf(text) > -1)) {
-    // return true;
-  } else if (reverseData.some(element => element.indexOf(text) > -1)) {
-    // return true;
-  } else {
-    // return false;
+  //вычисление длины строки для длины массива
+  for (let i = 0; i < data.length; i++) {
+    dataLength = data[i].length;
   }
 
-  //сделать массив по вертикали -> искать внутри массива
-  let table = new Array(10);
-  for (let i = 0; i < table.length; i++) {
-    table[i] = new Array(10);
+  //сбор вертикального массива из обычного
+  for (let i = 0; i < dataLength; i++) {
+    verticalData[i] = new Array(data.length);
   }
-  for (let row = 0; row < table.length; row++) {
-    for (let col = 0; col < table[row].length; col++) {
-      table[row][col] = row * col;
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data[i].length; j++) {
+      verticalData[j][i] = data[i][j];
     }
   }
-  // console.log(table);
-  //let ta = table[8][8];
+  for (let i = 0; i < verticalData.length; i++) {
+    verticalData[i] = verticalData[i].join('');
+  }
 
-  // return masha;
+  //реверс строк в массиве
+  verticalData.forEach(function(element) {
+    reverseVerticalData.push(element.split('').reverse().join(''));
+  });
+
+  // поиск внутри массивов
+  if (data.some(element => element.indexOf(text) > -1)) {
+    return true;
+  } else if (reverseData.some(element => element.indexOf(text) > -1)) {
+    return true;
+  } else if (verticalData.some(element => element.indexOf(text) > -1)) {
+    return true;
+  } else if (reverseVerticalData.some(element => element.indexOf(text) > -1)) {
+    return true;
+  } else {
+    return false;
+  }
 }
